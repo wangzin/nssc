@@ -21,7 +21,7 @@
       								if($i==0 || $i==2 || $i==4 || $i==6 || $i==8 || $i==10 || $i==12 || $i==14){ ?>
 										<div class="row">
 									<?php }?>
-              							<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 h4" style="padding-right: 5px; padding-left: 0px;">
+              							<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 h4">
 	                    					<div class="mu-latest-course-single">
 	                      						<figure class="mu-latest-course-img">
 	                        						<a href="./uploads/events/<?php echo$event['Image'];?>" target="_blank"><img src="./uploads/events/<?php echo$event['Image'];?>" alt="img" style="width:100%; height:200px;"></a>
@@ -54,70 +54,12 @@
                   				</div>
                   			</div>
                   			<div class="row">
-		              			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+		              			<!-- <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 		              				<button class="pull-right btn-danger" style="margin-top:-35px"> <i class="fa fa-eye"></i> View all News</button>	
-		              			</div>
+		              			</div> -->
 		              		</div>
                   		</div>
-                  		<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 h4">
-							<aside class="mu-sidebar">
-			                   <div class="mu-single-sidebar">
-				                    <div class="tag-cloud">
-				                    	<span class="input-group-addon"><b>From Program Director’s Desk</b></span>
-			                    	 	<div id="message_details">
-				                          <p><?=$aboutUsDetails->Description?></p>
-				                        </div>
-				                    	<button class="mu-read-more-btn btn-block btn-warning text-center" href="#" onclick="loadeventspage('<?php echo base_url()?>index.php?baseController/loadpage/directormessage/')"> <i class="fa fa-eye"></i> Read More</button>
-				                    	<hr />
-				                    </div>
-				                    <br /><br />
-				                    <div class="tag-cloud">
-				                    	<span class="input-group-addon"><b>Publication</b></span>
-				                    	<?php foreach($reportList as $i=> $repo): if($repo['Type']=="Publication"){?>
-				                        <div class="media" onclick="loadeventspage('<?php echo base_url()?>index.php?baseController/loadpage/reportpublication/<?php echo $repo['Id']?>')">
-				                          <div class="mu-latest-course-single-content"> 
-				                          	<a href="#">
-					                          	<img class="img-thumbnail" src="./uploads/reportpublication/<?php echo$repo['Image'];?>" alt="img" width="100%" style="height:160px">
-					                            <p><?php echo$repo['Name'];?></p>
-				                            </a>
-				                            <span class="fa fa-clock-o pull-right"><?php echo$repo['Created_On'];?></span>
-				                          </div>
-				                        </div>
-				                       <?php } endforeach;  ?>
-				                       <hr />
-
-				                       <span class="input-group-addon"><b>Report</b></span>
-				                       <br/>
-				                    	<?php foreach($reportList as $i=> $repo): if($repo['Type']=="Report"){?>
-				                         <div class="media" onclick="loadeventspage('<?php echo base_url()?>index.php?baseController/loadpage/reportpublication/<?php echo $repo['Id']?>')">
-				                          <div class="mu-latest-course-single-content"> 
-				                          	<a href="#">
-					                          	<img class="img-thumbnail" src="./uploads/reportpublication/<?php echo$repo['Image'];?>" alt="img" width="100%" style="height:163px">
-					                            <p><?php echo$repo['Name'];?></p>
-				                            </a>
-				                            <span class="fa fa-clock-o pull-right"><?php echo$repo['Created_On'];?></span>
-				                          </div>
-				                        </div>
-				                       <?php } endforeach;  ?>
-				                        <hr />
-				                    </div>
-				                    <br /><br />
-				                    <!-- <div class="tag-cloud">
-				                    	<span class="input-group-addon"><b>Tender Anncouncements</b></span>
-				                    	<hr />
-				                    </div>
-				                    <br /><br /> -->
-				                    <div class="tag-cloud">
-				                    	<span class="input-group-addon"><b>Other Links</b></span>
-				                    	<hr />
-				                    	<?php   foreach($linkList as $i=> $link): 
-				                    		if($link['Link_Type']=="othersitelink"){?>
-			                    			<span class="fa fa-angle-double-right"></span>  <a href="<?=$link['Link_Address']?>" target="_blank"><?=$link['Link_Name']?></a><br />
-			                    		<?php } endforeach;  ?>
-				                    </div>
-			                   </div>
-			               	</aside>
-			             </div>
+                  		<?php $this->load->view('web/include/sidebar.php'); ?>
                   	</div>
               	</div>
           	</div>

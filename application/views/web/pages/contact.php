@@ -2,8 +2,12 @@
     <div class="container">
         <div class="row" style="margin-top: -60px;">
             <div class="col-md-12">
-                <div class="mu-contact-area">
-                    <div class="mu-title">
+                <div class="mu-contact-area mu-course-content-area">
+                    
+                    <div class="mu-contact-content">           
+                        <div class="row">
+                            <div class="col-md-9">
+                              <div class="mu-title">
                         <p><h3><b>Contact us At</b></h3></p>
                     <hr>
                     </div>
@@ -11,9 +15,6 @@
                     <p>Phone# <?=$sitedetails->Site_Contact;?> </p>
                     <p>Fax# <?=$sitedetails->Site_Fax;?></p>
                     <p>Email# <?=$sitedetails->Site_Email;?></p>
-                    <div class="mu-contact-content">           
-                        <div class="row">
-                            <div class="col-md-6">
                                 <div class="mu-contact-left">
                                     <form class="contactform" id="contactForm"> 
                                         <p class="comment-form-author">
@@ -45,12 +46,11 @@
                                         </p>        
                                     </form>
                                 </div>
-                            </div>
-                            <div class="col-md-6">
                                 <div class="mu-contact-right">
                                     <?php echo $sitedetails->Site_Location_Map;?>
                                 </div>
                             </div>
+                            <?php $this->load->view('web/include/sidebar.php'); ?>
                         </div>
                     </div>
                 </div>
@@ -107,4 +107,9 @@
      function removeerr(errId){
       $('#'+errId).html('');
     }
+    var content = $("#message_details").text().trim();
+  $("#message_details").text(content.substr(0, 100) + '...');
+   $(document).ready(function(){
+      $(window).scrollTop(0);
+  });
  </script>

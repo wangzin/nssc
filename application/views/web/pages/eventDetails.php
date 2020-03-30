@@ -38,8 +38,8 @@
                     <?php } endforeach;  ?>
                   </ol>
                   <div class="carousel-inner" role="listbox">
-                    <?php foreach($eventDetailsImages as $i=> $img): 
-                      if($i==0){?>
+                    <?php $image=""; foreach($eventDetailsImages as $i=> $img): 
+                      if($i==0){ $image=$img['Image'];?>
                         <div class="item active">
                           <a href="./uploads/events/<?php echo$img['Image'];?>" target="_blank">
                             <img src="./uploads/events/<?php echo$img['Image'];?>" alt="img" style="object-fit: cover; width: 100%; height: 100%">
@@ -76,65 +76,12 @@
                           <p><?=$eventDetails->Event_Details;?></p>
                         </div>
                       </article>
+                      <iframe src="https://www.facebook.com/plugins/share_button.php?href=http%3A%2F%2Flocalhost%3A81%2Fnssc%2Findex.php%3FbaseController%2Floadpage%2FeventDetails%2F14&layout=button&size=small&width=67&height=20&appId" width="67" height="20" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
                     </div>                                   
                   </div>
                 </div>
               </div>
-
-
-              <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                <aside class="mu-sidebar">
-                     <div class="mu-single-sidebar">
-                        <div class="tag-cloud">
-                          <span class="input-group-addon"><b>From Program Director’s Desk</b></span>
-                          <div id="message_details_event">
-                              <p><?=$aboutUsDetails->Description?></p>
-                            </div>
-                          <button class="mu-read-more-btn btn-block btn-warning text-center" href="#" onclick="loadeventspage('<?php echo base_url()?>index.php?baseController/loadpage/directormessage/')"> <i class="fa fa-eye"></i> Read More</button>
-                          <hr />
-                        </div>
-                        <br /><br />
-                           <span class="input-group-addon"><b>Report</b></span>
-                           <br/>
-                          <?php foreach($reportList as $i=> $repo): if($repo['Type']=="Report"){?>
-                             <div class="media" onclick="loadeventspage('<?php echo base_url()?>index.php?baseController/loadpage/reportpublication/<?php echo $repo['Id']?>')">
-                              <div class="mu-latest-course-single-content"> 
-                                <a href="#">
-                                  <img class="img-thumbnail" src="./uploads/reportpublication/<?php echo$repo['Image'];?>" alt="img" width="100%" style="height:150px">
-                                  <p><?php echo$repo['Name'];?></p>
-                                </a>
-                                <span class="fa fa-clock-o pull-right"><?php echo$repo['Created_On'];?></span>
-                              </div>
-                            </div>
-                           <?php } endforeach;  ?>
-                            <hr />
-                        </div>
-                     </div>
-                  </aside>
-               </div>
-
-              <!-- <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                <aside class="mu-sidebar">
-                   <div class="mu-single-sidebar">
-                    <h3>Also Visit</h3>
-                    <div class="mu-sidebar-popular-courses">
-                       <?php foreach($eventList as $i=> $event): ?>
-                        <div class="media" onclick="loadeventspage('<?php echo base_url()?>index.php?baseController/loadpage/eventDetails/<?php echo $event['Id']?>')">
-                          <div class="media-left">
-                            <a href="#">
-                              <img class="media-object" src="./uploads/events/<?php echo$event['Image'];?>" alt="img">
-                            </a>
-                          </div>
-                          <div class="media-body"> 
-                            <h4 class="media-heading"><a href="#"><?php echo$event['Event_Name'];?></a></h4>  
-                            <span class="popular-course-price"><?php echo$event['Posted_Date'];?></span>
-                          </div>
-                        </div>
-                       <?php  endforeach;  ?>
-                    </div>
-                  </div>
-                </aside>
-             </div> -->
+              <?php $this->load->view('web/include/sidebar.php'); ?>
            </div>
          </div>
        </div>
@@ -142,9 +89,18 @@
    </div>
  </section>
  <script type="text/javascript">
-  var content = $("#message_details_event").text().trim();
-  $("#message_details_event").text(content.substr(0, 100) + '...');
+     function genericSocialShare(url){
+     window.open(url,'sharer','toolbar=0,status=0,width=648,height=395');
+     return true;
+    }
+</script>
 
+[Social Media Share Text/Image]</a>
+
+ <script type="text/javascript">
+
+   var content = $("#message_details").text().trim();
+  $("#message_details").text(content.substr(0, 100) + '...');
    $(document).ready(function(){
       $(window).scrollTop(0);
   });

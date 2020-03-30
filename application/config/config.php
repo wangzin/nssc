@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-$config['base_url'] = 'http://localhost/nssc/';
+$config['base_url'] = 'http://localhost:81/nssc/';
 
 $config['index_page'] = 'index.php';
 

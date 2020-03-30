@@ -89,7 +89,10 @@ class websitesDetailsModel extends CI_Model{
         
         return $query;
     }
-
+    function getotehrpageDetails($table="",$condition=""){
+        $query =$this->db->query("SELECT * FROM ".$table."  WHERE Type='".$condition."'")->result_array(); 
+        return $query;
+    }
     
     
 }

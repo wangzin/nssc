@@ -28,12 +28,17 @@
       </li>
      
       <li id="events">
+        <a href="#" onclick="loadpage('<?php echo base_url();?>index.php?adminController/loadPage/otherpagedetails/','soilINfo')">
+          <i class="fa fa-empire"></i>
+          <span>Soil Management Info</span>
+        </a>
+      </li>
+      <li id="events">
         <a href="#" onclick="loadpage('<?php echo base_url();?>index.php?adminController/loadPage/newsandOthers/','events')">
           <i class="fa fa-empire"></i>
           <span>New and Announcement</span>
         </a>
       </li>
-      
       
       <li id="gallery">
         <a href="#" onclick="loadpage('<?php echo base_url();?>index.php?adminController/loadPage/gallery/','gallery')">
@@ -59,10 +64,22 @@
           <span>Other site link</span>
         </a>
       </li>
-       <li id="sliders">
+      <li id="sliders">
         <a href="#" onclick="loadpage('<?php echo base_url();?>index.php?adminController/loadPage/Youtube/','othersitelink')">
           <i class="fa fa-youtube"></i>
           <span>You tube links</span>
+        </a>
+      </li>
+      <li id="sliders">
+        <a href="#" onclick="loadpage('<?php echo base_url();?>index.php?adminController/loadPage/download/','download')">
+          <i class="fa fa-download"></i>
+          <span>Downloads</span>
+        </a>
+      </li>
+      <li id="sliders">
+        <a href="#" onclick="loadpage('<?php echo base_url();?>index.php?adminController/loadPage/tender/','tender')">
+          <i class="fa fa-download"></i>
+          <span>Tender</span>
         </a>
       </li>
     </ul>

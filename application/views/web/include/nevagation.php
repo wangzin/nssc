@@ -9,14 +9,14 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">
-            <span  class="img-thumbnail" style="margin-top: -15px"> <img src="<?php echo base_url();?>uploads/logo/<?=$sitedetails->Site_Logo_Initial;?>" style="width:50px" alt=""> </span><span style=" color: white;"><?=$sitedetails->Site_Name;?></span>
+          <a class="navbar-brand" href="<?=base_url()?>">
+            <span  class="img-thumbnail" style="margin-top: -15px; margin-left: -15px"> <img src="<?php echo base_url();?>uploads/logo/<?=$sitedetails->Site_Logo_Initial;?>" style="width:50px" alt=""> </span><span style=" color: white;"><?=$sitedetails->Site_Name;?></span>
           </a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
-          <ul id="top-menu" class="nav navbar-nav navbar-right main-nav">
+          <b><ul id="top-menu" class="nav navbar-nav navbar-right main-nav" style="margin-right: 15px">
             <li class=""><a href="<?=base_url()?>" style=" color: white;"> <i class="fa fa-home"></i>&nbsp;Home</a></li>
-             <li class="dropdown" >
+             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" style=" color: white;">About Us<span class="fa fa-angle-down"></span></a>
                 <ul class="dropdown-menu" role="menu">
                    <li>
@@ -70,11 +70,25 @@
                      <a href="#" onclick="loadeventspage('<?php echo base_url()?>index.php?baseController/loadpage/technialrepo/')">Technical Report</a>
                   </li> 
                 </ul>
-              </li>          
-           
-            <li><a href="gallery.html" style=" color: white;">Downloads</a></li>
+              </li>   
+            <li class="dropdown" >
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" style=" color: white;">Soil Manangement Info<span class="fa fa-angle-down"></span></a>
+                <ul class="dropdown-menu" role="menu">
+                  <?php 
+                    foreach($otherpageList as $i=> $other):
+                  ?>
+                    <li>
+                       <a href="#" onclick="loadpagemenu('<?php echo base_url()?>index.php?baseController/loadpagemenu/otehrdetails/<?php echo $other['Id']?>/submenu')"><?php echo $other['Name'] ?></a>
+                    </li>  
+                    <?php  
+                        endforeach; 
+                    ?> 
+                </ul>
+            </li> 
+            <li><a href="#" onclick="loadpagemenu('<?php echo base_url()?>index.php?baseController/loadpagemenu/downloadpage')"  style=" color: white;">Downloads</a></li>
             <li><a href="#" onclick="loadpage('contact')" style=" color: white;">Contact</a></li>
-          </ul>                     
+          </ul>   
+          </b>                  
         </div>    
       </div>     
     </nav>

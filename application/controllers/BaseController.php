@@ -35,15 +35,23 @@ class BaseController extends CI_Controller {
         $page_data['linkList'] = $this->websitesDetailsModel->getDetails('t_link_dtls','allRows');
         $page_data['aboutUsDetails'] = $this->websitesDetailsModel->getDetails('t_about_us','websites');
         $page_data['reportList'] = $this->websitesDetailsModel->getDetails('t_publication_report_dtls','allRows');
+        $page_data['otherpageList'] = $this->websitesDetailsModel->getotehrpageDetails('t_other_page_dtls','Soil Management Info');
+        $page_data['tenderList'] = $this->websitesDetailsModel->getotehrpageDetails('t_other_page_dtls','Tender');
         $page_data['youtubeList'] = $this->websitesDetailsModel->getYouTubeList();
 
         
 		$this->load->view('web/index',$page_data);
 	}
 	function loadpage($pagetype="",$param2="",$param3=""){
+        $page_data['linkList'] = $this->websitesDetailsModel->getDetails('t_link_dtls','allRows');
+        $page_data['aboutUsDetails'] = $this->websitesDetailsModel->getDetails('t_about_us','websites');
+            $page_data['reportList'] = $this->websitesDetailsModel->getDetails('t_publication_report_dtls','allRows');
+        $page_data['tenderList'] = $this->websitesDetailsModel->getotehrpageDetails('t_other_page_dtls','Tender');
 		if($pagetype=="contact"){
             $page_data['messagetype'] = 'messagentread';
          	$page_data['sitedetails'] = $this->websitesDetailsModel->getDetails('t_website_dtls','websites');
+            $page_data['aboutUsDetails'] = $this->websitesDetailsModel->getDetails('t_about_us','websites');
+            $page_data['reportList'] = $this->websitesDetailsModel->getDetails('t_publication_report_dtls','allRows');
             $this->load->view('web/pages/contact', $page_data);
         }
         if($pagetype=="eventDetails"){
@@ -72,9 +80,6 @@ class BaseController extends CI_Controller {
 	        $page_data['totalViewer'] = $this->websitesDetailsModel->gettotalviewerDetails('eventDetails-'.$param2,'all');
         	$page_data['totalViewertotay'] = $this->websitesDetailsModel->gettotalviewerDetails('eventDetails-'.$param2,'today');*/
         	$this->websitesDetailsModel->updateViewer($param2); 
-        	$page_data['linkList'] = $this->websitesDetailsModel->getDetails('t_link_dtls','allRows');
-        	$page_data['aboutUsDetails'] = $this->websitesDetailsModel->getDetails('t_about_us','websites');
-        	$page_data['reportList'] = $this->websitesDetailsModel->getDetails('t_publication_report_dtls','allRows');
         	$page_data['eventDetails'] = $this->db->get_where('t_event_dtls',array('Id'=>$param2))->row();
             $page_data['eventDetailsImages'] = $this->db->get_where('t_event_images',array('Event_Id'=>$param2))->result_array();
             $page_data['eventList'] = $this->websitesDetailsModel->getEventList('ALL');
@@ -87,7 +92,6 @@ class BaseController extends CI_Controller {
         }
      	if($pagetype=="aboutus"){
      		$page_data['sitedetails'] = $this->websitesDetailsModel->getDetails('t_website_dtls','websites');
-        	$page_data['aboutUsDetails'] = $this->websitesDetailsModel->getDetails('t_about_us','websites');
         	$this->load->view('web/pages/aboutus', $page_data);
         }
         if($pagetype=="gallery"){
@@ -111,6 +115,7 @@ class BaseController extends CI_Controller {
         	$this->load->view('web/pages/brochursDetails', $page_data);
         }
         
+
          
         
 	}
@@ -158,6 +163,21 @@ class BaseController extends CI_Controller {
         	$page_data['submenulist'] = $this->websitesDetailsModel->getDetails('t_sub_menu_master','allRows');
             $this->load->view('web/pages/menuDetails', $page_data);
 		}
+
+        if($param1=="otehrdetails"){
+            $this->websitesDetailsModel->updatemenuViewer('t_other_page_dtls',$param2); 
+            $page_data['currentPageDetails']=  $this->websitesDetailsModel->getfromtable('t_other_page_dtls','condition1','Id/'.$param2);
+            $page_data['aboutUsDetails'] = $this->websitesDetailsModel->getDetails('t_about_us','websites');
+            $page_data['reportList'] = $this->websitesDetailsModel->getDetails('t_publication_report_dtls','allRows');
+            $this->load->view('web/pages/otherPageDetails', $page_data);
+        }
+        if($param1=="downloadpage"){
+
+            $page_data['downloadPageList'] = $this->websitesDetailsModel->getDetails('t_download_dtls','allRows');
+            $page_data['aboutUsDetails'] = $this->websitesDetailsModel->getDetails('t_about_us','websites');
+            $page_data['reportList'] = $this->websitesDetailsModel->getDetails('t_publication_report_dtls','allRows');
+            $this->load->view('web/pages/downloaddetails', $page_data);
+        }
 	}
 	function sendMessage(){
 		if($this->input->post('Sender_Name')!=""){

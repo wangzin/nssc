@@ -4,7 +4,7 @@
        		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
          		<div class="mu-course-content-area">
             		<div class="row">
-              			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              			<div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
               				<div class="mu-course-container mu-course-details">
 			                  <div class="row">
 			                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
@@ -26,6 +26,7 @@
 			                    </div>                                   
 			                  </div>
 			                </div>
+			                <?php $this->load->view('web/include/sidebar.php'); ?>
               			</div>
           			</div>
       			</div>
@@ -33,3 +34,11 @@
 		</div>
 	</div>
 </section>
+ <script type="text/javascript">
+  var content = $("#message_details").text().trim();
+  $("#message_details").text(content.substr(0, 100) + '...');
+   $(document).ready(function(){
+      $(window).scrollTop(0);
+  });
+  
+ </script>

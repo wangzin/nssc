@@ -36,7 +36,7 @@
               </div>
                        
             </div>
-            <div class="col-lg-6 col-md-6 col-sm-6">
+            <div class="col-lg-6 col-md-6 col-sm-6" style="margin-left: -30px">
               <div class="carousel slide carousel-swipe" id="carousel" data-ride="carousel" data-interval="10000">
                 <ol class="carousel-indicators">
                   <?php   foreach($youtubeList as $i => $you): 
@@ -93,7 +93,7 @@
         <div class="mu-footer-bottom-area">
           <p>&copy; All Right Reserved. Designed by <a href="#" rel="nofollow">e-Bhutan</a></p>
           <a class="nav-link active" target="_blank" href="<?=base_url()?>index.php?AdminController/logout">
-              <button type="button" class="btn btn-primary btn-xs pull-right">
+              <button type="button" class="btn btn-primary btn-xs">
                 <i class="fa fa-sign-in"></i>&nbsp;&nbsp;Admin Log In
               </button>
             </a>
@@ -115,6 +115,9 @@
   <script type="text/javascript">
   var content = $("#message_details").text().trim();
   $("#message_details").text(content.substr(0, 100) + '...');
+   $(document).ready(function(){
+      $(window).scrollTop(0);
+  });
 
   $(document).ready(function(){
     $(window).scrollTop(0);
