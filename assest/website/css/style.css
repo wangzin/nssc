@@ -348,7 +348,6 @@ img {
   height: 500px;
 }
 #mu-slider .mu-slider-single .mu-slider-img:after {
-  background-color: rgba(0, 0, 0, 0.5);
   content: '';
   position: absolute;
   left: 0;

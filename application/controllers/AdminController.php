@@ -52,6 +52,7 @@ class AdminController extends CI_Controller {
         }
     }
     function loadPage($param1="",$param2="",$param3=""){
+        //die($param1);
         if($param1=="messages"){
             $page_data['messagetype'] = 'messagentread';
              $page_data['comments'] = $this->AdminModel->getpublicMessages();
@@ -101,11 +102,6 @@ class AdminController extends CI_Controller {
             $page_data['menuDetails']=  $this->AdminModel->getfromtable($table,'condition1','Id/'.$param2);
             $this->load->view('admin/pages/editmenuSubMenus', $page_data);
         }
-        
-        if($param1=="slider"){
-            $page_data['slider'] = $this->db->get('t_slider_details')->result_array(); 
-            $this->load->view('admin/pages/slider', $page_data);
-        }
 
         if($param1=="newsandOthers"){
             $page_data['eventList'] = $this->db->get('t_event_dtls')->result_array(); 
@@ -116,6 +112,12 @@ class AdminController extends CI_Controller {
             $page_data['eventimagesList'] = $this->db->get_where('t_event_images',array('Event_Id'=>$param2))->result_array();; 
             $this->load->view('admin/event/editEvents', $page_data);
         }
+        
+        if($param1=="slider"){
+            $page_data['slider'] = $this->db->get('t_slider_details')->result_array(); 
+            $this->load->view('admin/pages/slider', $page_data);
+        }
+
         if($param1=="othersitelink" || $param1=="Youtube"){
             if($param2=="addlink"){
                 $data['Link_Name']=$this->input->post('Event_Name');
@@ -273,8 +275,39 @@ class AdminController extends CI_Controller {
             $page_data['reportList'] = $this->db->get('t_publication_report_dtls')->result_array();
             $this->load->view('admin/pages/publication', $page_data);
         }
+        if($param1=="download"){
+            $data['Name']=$this->input->post('Event_Name');
+            $data['Link_Type']=$this->input->post('Link_Type'); 
+            if($this->input->post('Link_Type')=="Attached File"){
+                move_uploaded_file($_FILES['References_Link']['tmp_name'],'./uploads/downloadAttachments/'.$_FILES["References_Link"]["name"]);
+                $data['Link_Address']=$_FILES["References_Link"]["name"];
+            }
+            else{
+                $data['Link_Address']=$this->input->post('Link_Address');
+            }
+            $data['Posted_Date']=date('Y-m-d');
+            if($this->input->post('actiontype')=="add"){
+                $this->AdminModel->do_insert('t_download_dtls', $data);  
+            }
+            if($this->input->post('actiontype')=="delete"){
+                if($this->input->post('imageId')!=""){
+                    $fle="./uploads/downloadAttachments/".$this->input->post('imageId');
+                    if (file_exists($fle)){
+                        unlink($fle);
+                    }
+                }
+                $this->db->where('Id',$this->input->post('deleteId'));
+                $this->db->delete('t_download_dtls');
+            }
+            $page_data['downloadList'] = $this->db->get('t_download_dtls')->result_array();
+            $this->load->view('admin/pages/downloads', $page_data);
+        }
+        if($param1=="editotherpage"){
+            $page_data['pagedeails'] = $this->db->get_where('t_other_page_dtls',array('Id'=>$param2))->row();
+            $this->load->view('admin/pages/editotherpagedetails', $page_data);
+        }
         
-        if($param1=="otherpagedetails" || "tender"){
+        if($param1=="otherpagedetails" || $param1== "tender"){
             $add_update_data['Name']=$this->input->post('Name'); 
             $add_update_data['Type']=$this->input->post('Type'); 
             $add_update_data['Description']=$this->input->post('Description');
@@ -325,42 +358,9 @@ class AdminController extends CI_Controller {
             $page_data['otherpageList'] = $this->db->get('t_other_page_dtls')->result_array();
             $this->load->view('admin/pages/otherpagedetails', $page_data);
         }
-        if($param1=="editotherpage"){
-            $page_data['pagedeails'] = $this->db->get_where('t_other_page_dtls',array('Id'=>$param2))->row();
-            $this->load->view('admin/pages/editotherpagedetails', $page_data);
-        }
-        
-        if($param1=="download"){
-            $data['Name']=$this->input->post('Event_Name');
-            $data['Link_Type']=$this->input->post('Link_Type'); 
-            if($this->input->post('Link_Type')=="Attached File"){
-                move_uploaded_file($_FILES['References_Link']['tmp_name'],'./uploads/downloadAttachments/'.$_FILES["References_Link"]["name"]);
-                $data['Link_Address']=$_FILES["References_Link"]["name"];
-            }
-            else{
-                $data['Link_Address']=$this->input->post('Link_Address');
-            }
-            $data['Posted_Date']=date('Y-m-d');
-            if($this->input->post('actiontype')=="add"){
-                $this->AdminModel->do_insert('t_download_dtls', $data);  
-            }
-            if($this->input->post('actiontype')=="delete"){
-                if($this->input->post('imageId')!=""){
-                    $fle="./uploads/downloadAttachments/".$this->input->post('imageId');
-                    if (file_exists($fle)){
-                        unlink($fle);
-                    }
-                }
-                $this->db->where('Id',$this->input->post('deleteId'));
-                $this->db->delete('t_download_dtls');
-            }
-            $page_data['downloadList'] = $this->db->get('t_download_dtls')->result_array();
-            $this->load->view('admin/pages/downloads', $page_data);
-        }
+
         
     }
-
-
 
     function UpdateInfo($param1=""){
         $page_data['formSubmit']="";

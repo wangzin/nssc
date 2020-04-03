@@ -3,20 +3,20 @@
        <div class="mu-single-sidebar">
             <div class="tag-cloud">
             	<span class="input-group-addon"><b>From Program Director’s Desk</b></span>
-        	 	<div id="message_details">
+        	 	<div id="message_details" style="font-size: 15px; font-style: oblique;">
                   <p><?=$aboutUsDetails->Description?></p>
                 </div>
-            	<button class="mu-read-more-btn btn-block btn-warning text-center" href="#" onclick="loadeventspage('<?php echo base_url()?>index.php?baseController/loadpage/directormessage/')"> <i class="fa fa-eye"></i> Read More</button>
+            	<button class="mu-read-more-btn btn-block btn-warning text-center" href="<?php echo base_url()?>index.php?baseController/loadpagemenu/directormessage/" style="font-size: 12px"> <i class="fa fa-eye"></i> Read More</button>
             	<hr />
             </div>
             <br /><br />
             <div class="tag-cloud">
             	<span class="input-group-addon"><b>Publication</b></span>
             	<?php foreach($reportList as $i=> $repo): if($repo['Type']=="Publication"){?>
-                <div class="media" onclick="loadeventspage('<?php echo base_url()?>index.php?baseController/loadpage/reportpublication/<?php echo $repo['Id']?>')">
+                <div class="media">
                   <div class="mu-latest-course-single-content"> 
-                  	<a href="#">
-                      	<img class="img-thumbnail" src="./uploads/reportpublication/<?php echo$repo['Image'];?>" alt="img" width="100%" style="height:160px">
+                  	<a href="<?php echo base_url()?>index.php?baseController/loadpagemenu/reportpublication/<?php echo $repo['Id']?>">
+                      	<img class="img-thumbnail" src="./uploads/reportpublication/<?php echo$repo['Image'];?>" alt="img" width="100%" style="height:150px">
                         <p><?php echo$repo['Name'];?></p>
                     </a>
                     <span class="fa fa-clock-o pull-right"><?php echo$repo['Created_On'];?></span>
@@ -28,10 +28,10 @@
                <span class="input-group-addon"><b>Report</b></span>
                <br/>
             	<?php foreach($reportList as $i=> $repo): if($repo['Type']=="Report"){?>
-                 <div class="media" onclick="loadeventspage('<?php echo base_url()?>index.php?baseController/loadpage/reportpublication/<?php echo $repo['Id']?>')">
+                 <div class="media">
                   <div class="mu-latest-course-single-content"> 
-                  	<a href="#">
-                      	<img class="img-thumbnail" src="./uploads/reportpublication/<?php echo$repo['Image'];?>" alt="img" width="100%" style="height:163px">
+                  	<a href="<?php echo base_url()?>index.php?baseController/loadpagemenu/reportpublication/<?php echo $repo['Id']?>">
+                      	<img class="img-thumbnail" src="./uploads/reportpublication/<?php echo$repo['Image'];?>" alt="img" width="100%" style="height:150px">
                         <p><?php echo$repo['Name'];?></p>
                     </a>
                     <span class="fa fa-clock-o pull-right"><?php echo$repo['Created_On'];?></span>
@@ -45,7 +45,7 @@
             	<span class="input-group-addon"><b>Tender Anncouncements</b></span>
             	<hr />
             	<?php   foreach($tenderList as $i=> $link): ?>
-        			<a href="#" onclick="loadpagemenu('<?php echo base_url()?>index.php?baseController/loadpagemenu/otehrdetails/<?php echo $link['Id']?>/submenu')"><?=$link['Name']?></a><br />
+        			<a href="#<?php echo base_url()?>index.php?baseController/loadpagemenu/otehrdetails/<?php echo $link['Id']?>/submenu"><?=$link['Name']?></a><br />
         		<?php endforeach;  ?>
             </div>
             <br /><br />

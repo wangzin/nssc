@@ -29,6 +29,7 @@
                         <div class="mu-blog-description">
                           <p><?=$currentPageDetails->Details;?></p>
                         </div>
+                        <iframe src="https://www.facebook.com/plugins/share_button.php?href=http%3A%2F%2Fwww.e-bhutan.com%2Findex.php%3FbaseController%2Floadpagemenu%2Fmenulinkdetails%2F<?=$pageType?>%2Fsubmenu&layout=button&size=large&appId=222395278982640&width=77&height=28" width="77" height="28" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
                       </article>
                       
                       </div>

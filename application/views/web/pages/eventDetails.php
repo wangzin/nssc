@@ -76,7 +76,7 @@
                           <p><?=$eventDetails->Event_Details;?></p>
                         </div>
                       </article>
-                      <iframe src="https://www.facebook.com/plugins/share_button.php?href=http%3A%2F%2Flocalhost%3A81%2Fnssc%2Findex.php%3FbaseController%2Floadpage%2FeventDetails%2F14&layout=button&size=small&width=67&height=20&appId" width="67" height="20" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
+                      <iframe src="https://www.facebook.com/plugins/share_button.php?href=http%3A%2F%2Fwww.e-bhutan.com%2Findex.php%3FbaseController%2Floadpage%2FeventDetails%2F<?=$pageType?>&layout=button&size=large&appId=222395278982640&width=77&height=28" width="77" height="28" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
                     </div>                                   
                   </div>
                 </div>

@@ -20,13 +20,15 @@
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" style=" color: white;">About Us<span class="fa fa-angle-down"></span></a>
                 <ul class="dropdown-menu" role="menu">
                    <li>
-                     <a href="#" onclick="loadeventspage('<?php echo base_url()?>index.php?baseController/loadpage/aboutus/')"><?=$aboutUsDetails->Title?></a>
+                     <!-- <a href="#" onclick="loadeventspage('<?php echo base_url()?>index.php?baseController/loadpage/aboutus/')"><?=$aboutUsDetails->Title?></a> -->
+                     <a href="<?php echo base_url()?>index.php?baseController/loadpagemenu/aboutus/"><?=$aboutUsDetails->Title?></a>
                   </li> 
                   <li>
-                     <a href="#" onclick="loadeventspage('<?php echo base_url()?>index.php?baseController/loadpage/staffDetails/')">Who is Who</a>
+                     <a href="<?php echo base_url()?>index.php?baseController/loadpagemenu/staffDetails/">Who is Who</a>
+                     <!-- <a href="#" onclick="loadeventspage('<?php echo base_url()?>index.php?baseController/loadpage/staffDetails/')">Who is Who</a> -->
                   </li> 
                    <li>
-                    <a href="#" onclick="loadeventspage('<?php echo base_url()?>index.php?baseController/loadpage/gallery/')">Gallery</a></li>
+                    <a href="<?php echo base_url()?>index.php?baseController/loadpagemenu/gallery/" >Gallery</a></li>
                 </ul>
               </li>
             <?php 
@@ -41,7 +43,8 @@
                     if($sub['MenuId']==$menulist['Id']){
                 ?>
                   <li>
-                     <a href="#" onclick="loadpagemenu('<?php echo base_url()?>index.php?baseController/loadpagemenu/menulinkdetails/<?php echo $sub['Id']?>/submenu')"><?php echo $sub['SubMenuName'] ?></a>
+                     <a href="<?php echo base_url()?>index.php?baseController/loadpagemenu/menulinkdetails/<?php echo $sub['Id']?>/submenu"><?php echo $sub['SubMenuName'] ?></a>
+                     <!-- <a href="#" onclick="loadpagemenu('<?php echo base_url()?>index.php?baseController/loadpagemenu/menulinkdetails/<?php echo $sub['Id']?>/submenu')"><?php echo $sub['SubMenuName'] ?></a> -->
                   </li>  
                   <?php }  
                       endforeach; 
@@ -50,7 +53,7 @@
             </li> 
             <?php } else{ if($menulist['Details']!=""){?>
               <li>
-                 <a href="#" onclick="loadpagemenu('<?php echo base_url()?>index.php?baseController/loadpagemenu/menulinkdetails/<?php echo $menulist['Id']?>/menu')">
+                 <a href="<?php echo base_url()?>index.php?baseController/loadpagemenu/menulinkdetails/<?php echo $menulist['Id']?>/menu">
                     <?php echo $menulist['MenuName']; ?>
                 </a>
               </li>
@@ -61,13 +64,13 @@
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" style=" color: white;">Publications<span class="fa fa-angle-down"></span></a>
                 <ul class="dropdown-menu" role="menu">
                    <li>
-                     <a href="#" onclick="loadeventspage('<?php echo base_url()?>index.php?baseController/loadpage/Sustainable/')">Technical Report</a>
+                     <a href="<?php echo base_url()?>index.php?baseController/loadpagemenu/Sustainable/">Technical Report</a>
                   </li> 
                   <li>
-                     <a href="#" onclick="loadeventspage('<?php echo base_url()?>index.php?baseController/loadpage/Brochures/')">Brochures</a>
+                     <a href="<?php echo base_url()?>index.php?baseController/loadpagemenu/Brochures/">Brochures</a>
                   </li> 
                   <li>
-                     <a href="#" onclick="loadeventspage('<?php echo base_url()?>index.php?baseController/loadpage/technialrepo/')">Technical Report</a>
+                     <a href="<?php echo base_url()?>index.php?baseController/loadpagemenu/technialrepo/">Technical Report</a>
                   </li> 
                 </ul>
               </li>   
@@ -78,14 +81,14 @@
                     foreach($otherpageList as $i=> $other):
                   ?>
                     <li>
-                       <a href="#" onclick="loadpagemenu('<?php echo base_url()?>index.php?baseController/loadpagemenu/otehrdetails/<?php echo $other['Id']?>/submenu')"><?php echo $other['Name'] ?></a>
+                       <a href="<?php echo base_url()?>index.php?baseController/loadpagemenu/otehrdetails/<?php echo $other['Id']?>/submenu"><?php echo $other['Name'] ?></a>
                     </li>  
                     <?php  
                         endforeach; 
                     ?> 
                 </ul>
             </li> 
-            <li><a href="#" onclick="loadpagemenu('<?php echo base_url()?>index.php?baseController/loadpagemenu/downloadpage')"  style=" color: white;">Downloads</a></li>
+            <li><a href="<?php echo base_url()?>index.php?baseController/loadpagemenu/downloadpage"  style=" color: white;">Downloads</a></li>
             <li><a href="#" onclick="loadpage('contact')" style=" color: white;">Contact</a></li>
           </ul>   
           </b>                  
@@ -102,9 +105,9 @@ var sticky = header.offsetTop;
 
 function myFunction() {
   if (window.pageYOffset > sticky) {
-    header.classList.add("navbar-fixed-top");
+    header.classList.add("fixed-top");
   } else {
-    header.classList.remove("navbar-fixed-top");
+    header.classList.remove("fixed-top");
   }
 }
 </script>

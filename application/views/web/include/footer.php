@@ -93,7 +93,7 @@
         <div class="mu-footer-bottom-area">
           <p>&copy; All Right Reserved. Designed by <a href="#" rel="nofollow">e-Bhutan</a></p>
           <a class="nav-link active" target="_blank" href="<?=base_url()?>index.php?AdminController/logout">
-              <button type="button" class="btn btn-primary btn-xs">
+              <button type="button" class="btn btn-primary btn-xs pull-left">
                 <i class="fa fa-sign-in"></i>&nbsp;&nbsp;Admin Log In
               </button>
             </a>

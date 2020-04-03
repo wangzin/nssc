@@ -82,44 +82,42 @@ class BaseController extends CI_Controller {
         	$this->websitesDetailsModel->updateViewer($param2); 
         	$page_data['eventDetails'] = $this->db->get_where('t_event_dtls',array('Id'=>$param2))->row();
             $page_data['eventDetailsImages'] = $this->db->get_where('t_event_images',array('Event_Id'=>$param2))->result_array();
+            $page_data['pageType']= $param2;
             $page_data['eventList'] = $this->websitesDetailsModel->getEventList('ALL');
+            if($param2=="allevent"){
+                $this->load->view('web/pages/allevent', $page_data);
+            }
+            else{
+                $this->load->view('web/pages/eventDetails', $page_data);
+            }
             
-            $this->load->view('web/pages/eventDetails', $page_data);
-        }
-        if($pagetype=="staffDetails"){
-        	$page_data['staffList'] = $this->websitesDetailsModel->getDetails('t_staff_dtls','allRows');
-        	$this->load->view('web/pages/staffDetails', $page_data);
-        }
-     	if($pagetype=="aboutus"){
-     		$page_data['sitedetails'] = $this->websitesDetailsModel->getDetails('t_website_dtls','websites');
-        	$this->load->view('web/pages/aboutus', $page_data);
-        }
-        if($pagetype=="gallery"){
-
-        	$page_data['galleryList'] = $this->websitesDetailsModel->getDetails('t_gallery_dtls','allRows');
-        	$this->load->view('web/pages/gallery', $page_data);
-        }
-        if($pagetype=="directormessage"){
-        	$page_data['aboutUsDetails'] = $this->websitesDetailsModel->getDetails('t_about_us','websites');
-        	$this->load->view('web/pages/messagedetails', $page_data);
         }
         
-        if($pagetype=="reportpublication"){
-        	$page_data['reportDetails'] = $this->db->get_where('t_publication_report_dtls',array('Id'=>$param2))->row();
-        	$page_data['reportList'] = $this->websitesDetailsModel->getDetails('t_publication_report_dtls','allRows');
-        	$this->load->view('web/pages/reportdetails', $page_data);
-        }
+     	
         
-        if($pagetype=="Brochures" || $pagetype=="Sustainable" || $pagetype=="technialrepo"){
-        	$page_data['BrochuresList'] = $this->websitesDetailsModel->getBrochuresList($pagetype);
-        	$this->load->view('web/pages/brochursDetails', $page_data);
-        }
+        
+        
+        
+        
+        
         
 
          
         
 	}
 	function loadpagemenu($param1="",$param2="",$param3=""){
+        $page_data['sitedetails'] = $this->websitesDetailsModel->getDetails('t_website_dtls','websites');
+        $page_data['menulist'] = $this->websitesDetailsModel->getDetails('t_menu_master','allRows');
+        $page_data['submenulist'] = $this->websitesDetailsModel->getDetails('t_sub_menu_master','allRows');
+        $page_data['slider'] = $this->websitesDetailsModel->getDetails('t_slider_details','allRows');
+        $page_data['eventList'] = $this->websitesDetailsModel->getEventList('8'); 
+        $page_data['linkList'] = $this->websitesDetailsModel->getDetails('t_link_dtls','allRows');
+        $page_data['aboutUsDetails'] = $this->websitesDetailsModel->getDetails('t_about_us','websites');
+        $page_data['reportList'] = $this->websitesDetailsModel->getDetails('t_publication_report_dtls','allRows');
+        $page_data['otherpageList'] = $this->websitesDetailsModel->getotehrpageDetails('t_other_page_dtls','Soil Management Info');
+        $page_data['tenderList'] = $this->websitesDetailsModel->getotehrpageDetails('t_other_page_dtls','Tender');
+        $page_data['youtubeList'] = $this->websitesDetailsModel->getYouTubeList();
+
 		if($param1=="menulinkdetails"){
 			$table="";
          	if($param3=="submenu"){
@@ -128,7 +126,7 @@ class BaseController extends CI_Controller {
             if($param3=="menu"){
                 $table='t_menu_master';
             }
-            $page_data['type']= $param3;
+            $page_data['pageType']= $param2;
             /*
             $json  = file_get_contents('http://ip-api.com/json');
 			$json  = json_decode($json ,true);
@@ -155,29 +153,49 @@ class BaseController extends CI_Controller {
 	        $page_data['totalViewer'] = $this->websitesDetailsModel->gettotalviewerDetails($param3.'-'.$param2,'all');
         	$page_data['totalViewertotay'] = $this->websitesDetailsModel->gettotalviewerDetails($param3.'-'.$param2,'today');*/
         	$this->websitesDetailsModel->updatemenuViewer($table,$param2); 
-        	$page_data['linkList'] = $this->websitesDetailsModel->getDetails('t_link_dtls','allRows');
-        	$page_data['aboutUsDetails'] = $this->websitesDetailsModel->getDetails('t_about_us','websites');
-        	$page_data['reportList'] = $this->websitesDetailsModel->getDetails('t_publication_report_dtls','allRows');
+            $page_data['pageType'] = $param1;
             $page_data['currentPageDetails']=  $this->websitesDetailsModel->getfromtable($table,'condition1','Id/'.$param2);
-            $page_data['menulist'] = $this->websitesDetailsModel->getDetails('t_menu_master','allRows');
-        	$page_data['submenulist'] = $this->websitesDetailsModel->getDetails('t_sub_menu_master','allRows');
-            $this->load->view('web/pages/menuDetails', $page_data);
+            $page_data['PageType']="menuDetails";
 		}
 
         if($param1=="otehrdetails"){
+             $page_data['pageType']= $param2;
             $this->websitesDetailsModel->updatemenuViewer('t_other_page_dtls',$param2); 
             $page_data['currentPageDetails']=  $this->websitesDetailsModel->getfromtable('t_other_page_dtls','condition1','Id/'.$param2);
-            $page_data['aboutUsDetails'] = $this->websitesDetailsModel->getDetails('t_about_us','websites');
-            $page_data['reportList'] = $this->websitesDetailsModel->getDetails('t_publication_report_dtls','allRows');
-            $this->load->view('web/pages/otherPageDetails', $page_data);
+            $page_data['PageType']="otherPageDetails";
         }
         if($param1=="downloadpage"){
-
             $page_data['downloadPageList'] = $this->websitesDetailsModel->getDetails('t_download_dtls','allRows');
-            $page_data['aboutUsDetails'] = $this->websitesDetailsModel->getDetails('t_about_us','websites');
-            $page_data['reportList'] = $this->websitesDetailsModel->getDetails('t_publication_report_dtls','allRows');
-            $this->load->view('web/pages/downloaddetails', $page_data);
+            $page_data['PageType']="downloaddetails";
+            
         }
+        if($param1=="aboutus"){
+            $page_data['sitedetails'] = $this->websitesDetailsModel->getDetails('t_website_dtls','websites');
+            $page_data['PageType']="aboutus";
+        }
+        if($param1=="staffDetails"){
+            $page_data['staffList'] = $this->websitesDetailsModel->getDetails('t_staff_dtls','allRows');
+            $page_data['PageType']="staffDetails";
+        }
+        if($param1=="gallery"){
+            $page_data['galleryList'] = $this->websitesDetailsModel->getDetails('t_gallery_dtls','allRows');
+            $page_data['PageType']="gallery";
+        }
+        if($param1=="Brochures" || $param1=="Sustainable" || $param1=="technialrepo"){
+             $page_data['pageType'] = $param1;
+            $page_data['BrochuresList'] = $this->websitesDetailsModel->getBrochuresList($param1);
+            $page_data['PageType']="brochursDetails";
+        }
+        if($param1=="directormessage"){
+            $page_data['aboutUsDetails'] = $this->websitesDetailsModel->getDetails('t_about_us','websites');
+            $page_data['PageType']="messagedetails";
+        }
+        if($param1=="reportpublication"){
+            $page_data['reportDetails'] = $this->db->get_where('t_publication_report_dtls',array('Id'=>$param2))->row();
+            $page_data['reportList'] = $this->websitesDetailsModel->getDetails('t_publication_report_dtls','allRows');
+            $page_data['PageType']="reportdetails";
+        }
+        $this->load->view('web/pages/loadpageincontainer', $page_data);
 	}
 	function sendMessage(){
 		if($this->input->post('Sender_Name')!=""){

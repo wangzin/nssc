@@ -8,9 +8,21 @@
 	  		<?php $this->load->view('web/include/slider.php');?> 
 	  		<?php $this->load->view('web/include/newsAndAnnouncement.php');?> 
 	  	</div>
+	  	<!-- <iframe src="https://www.facebook.com/plugins/share_button.php?href=http%3A%2F%2Fwww.ngn.bt%2Findex.php%3Fweb%2Fsub_page%2F22%2F51&layout=button_count&size=small&width=77&height=20&appId" width="77" height="20" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe> -->
 		<?php $this->load->view('web/include/footer.php'); ?>
 	</div>
+	<div id="fb-root"></div>
+  <script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));</script>
+
 </body> 
+
+
 <script type="text/javascript">
 	var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
 		(function(){

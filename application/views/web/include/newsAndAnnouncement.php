@@ -24,22 +24,26 @@
               							<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 h4">
 	                    					<div class="mu-latest-course-single">
 	                      						<figure class="mu-latest-course-img">
-	                        						<a href="./uploads/events/<?php echo$event['Image'];?>" target="_blank"><img src="./uploads/events/<?php echo$event['Image'];?>" alt="img" style="width:100%; height:200px;"></a>
-	                    							<figcaption class="mu-latest-course-imgcaption text-uppercase text-danger">
+	                        						<a href="./uploads/events/<?php echo$event['Image'];?>" target="_blank"><img src="./uploads/events/<?php echo$event['Image'];?>" alt="img" style="width:100%; height:255px;"></a>
+	                    							<figcaption class="mu-latest-course-imgcaption text-uppercase text-danger" style="font-size: 13px">
 	                      								<b><?php echo$event['Event_Name'];?></b>
 	                    							</figcaption>
 	                  							</figure>
 	                      						<div class="mu-latest-course-single-content">
 	                        						<p><?php echo$event['Event_Description'];?></p>
-	                        						<button class="mu-read-more-btn btn-block btn-warning" href="#" onclick="loadeventspage('<?php echo base_url()?>index.php?baseController/loadpage/eventDetails/<?php echo $event['Id']?>')">
+	                        						
 	                        							<?php if($event['New_Status']=="1"){?>
-	                        								<img src="./uploads/new-star.gif" alt="img" style="width:10%; " class="pull-left">
-	                        								<i class="fa fa-eye"></i> Read More
+	                        								<img src="./uploads/new-star.gif" alt="img" style="width:13%; " class="pull-left">
+                                          <button class="pull-right btn-warning" href="#" onclick="loadeventspage('<?php echo base_url()?>index.php?baseController/loadpage/eventDetails/<?php echo $event['Id']?>')" style="font-size: 15px">
+                                          <i class="fa fa-eye" style="padding-top: 5px;padding-bottom: 5px;"></i> Read More
+                                          </button>
                         								<?php }else{?>
+                                          <button class="pull-right btn-warning" href="#" onclick="loadeventspage('<?php echo base_url()?>index.php?baseController/loadpage/eventDetails/<?php echo $event['Id']?>')" style="font-size: 15px">
                         									<i class="fa fa-eye" style="padding-top: 5px;padding-bottom: 5px;"></i> Read More
+                                          </button>
                         								<?php }?>
-	                        							</button>
-	                        						<div class="mu-latest-course-single-contbottom">
+	                        							
+	                        						<div class="mu-latest-course-single-contbottom" style="font-size: 15px">
 	                          							<a class="mu-course-details" href="#"><i class="fa fa-bar-chart"></i> Total View: <b><?php echo$event['Total_View'];?></b></a>
 	                          							<span class="text-danger pull-right"><i class="fa fa-clock-o"></i> Posted On: <b><?php echo$event['Posted_Date'];?></b></span>
 	                        						</div>
@@ -54,9 +58,9 @@
                   				</div>
                   			</div>
                   			<div class="row">
-		              			<!-- <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-		              				<button class="pull-right btn-danger" style="margin-top:-35px"> <i class="fa fa-eye"></i> View all News</button>	
-		              			</div> -->
+		              			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+		              				<button class="pull-right btn-danger" style="margin-top:-35px;" onclick="loadeventspage('<?php echo base_url()?>index.php?baseController/loadpage/eventDetails/allevent')"> <i class="fa fa-eye"></i> View all News</button>	
+		              			</div>
 		              		</div>
                   		</div>
                   		<?php $this->load->view('web/include/sidebar.php'); ?>
