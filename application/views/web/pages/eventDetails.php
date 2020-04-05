@@ -95,7 +95,7 @@
     }
 </script>
 
-[Social Media Share Text/Image]</a>
+
 
  <script type="text/javascript">
 

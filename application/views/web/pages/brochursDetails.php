@@ -36,7 +36,7 @@
                         <meta property="og:image"         content="http://www.e-bhutan.com/uploads/logo/logo.png" />
                         <meta property="og:image:alt"         content="http://www.e-bhutan.com/uploads/logo/logo.png" /> -->
 
-                        <iframe src="https://www.facebook.com/plugins/share_button.php?href=http%3A%2F%2Fwww.e-bhutan.com%2Findex.php%3FbaseController%2Floadpagemenu%2F<?=$pageType?>%2F&layout=button&size=large&width=77&height=28&appId" width="77" height="28" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
+                        <iframe src="https://www.facebook.com/plugins/share_button.php?href=http%3A%2F%2Fwww.e-bhutan.com%2Findex.php%3FbaseController%2Floadpagemenu%2F<?=$shareType?>%2F&layout=button&size=large&width=77&height=28&appId" width="77" height="28" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
 
                        <!--  <div id="fb-root"></div>
                         <script>(function(d, s, id) {

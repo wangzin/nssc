@@ -3,13 +3,18 @@ class websitesDetailsModel extends CI_Model{
 	function __construct(){
         parent::__construct();
     }
-    function getDetails($table="",$type=""){
+    function getDetails($table="",$type="",$limit=""){
     	if($type=="websites"){
     		return $this->db->get($table)->row(); 
     	}
     	if($type=="allRows"){
     		return $this->db->get($table)->result_array();
     	}
+        if($type=="othersitelink"){
+             $que ="SELECT * FROM ".$table." WHERE Link_Type='".$type."' ORDER BY Posted_Date DESC LIMIT ".$limit;
+             //die($que);
+             return $this->db->query($que)->result_array();
+        }
     }
     function do_insert($table,$data){
         $this->db->insert($table,$data);
